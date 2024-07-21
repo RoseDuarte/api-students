@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api-student/db"
 	"fmt"
 	"net/http"
 
@@ -33,6 +34,7 @@ func getStudents(c echo.Context) error {
 }
 
 func createStudent(c echo.Context) error {
+	db.AddStudent()
 	return c.String(http.StatusOK, "Create student")
 }
 
