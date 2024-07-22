@@ -2,7 +2,8 @@ package main
 
 import (
 	"api-student/api"
-	"log"
+	
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
@@ -12,6 +13,6 @@ func main() {
 	server.ConfigureRoutes()
 
 	if err := server.Start(); err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err).Msgf("Failed to start server")
 	}
 }
