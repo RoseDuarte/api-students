@@ -1,7 +1,7 @@
 package api
 
 import (
-	"api-student/db"
+	"api-student/schemas"
 	"errors"
 	"net/http"
 	"strconv"
@@ -19,7 +19,7 @@ func (api *API) getStudents(c echo.Context) error {
 }
 
 func (api *API) createStudent(c echo.Context) error {
-	student := db.Student{}
+	student := schemas.Student{}
 	if err := c.Bind(&student); err != nil {
 		return err
 	}
@@ -58,7 +58,7 @@ func (api *API) updateStudent(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, "Failed to get student ID")
 	}
 
-	receivedStudent := db.Student{}
+	receivedStudent := schemas.Student{}
 	if err := c.Bind(&receivedStudent); err != nil {
 		return err
 	}
@@ -110,7 +110,7 @@ func (api *API) deleteStudent(c echo.Context) error {
 // {id: 1, name: maria, age: 28, email: maria@gmail.com}
 // PUT / students/1 {name: mariana}
 
-func updateStudentInfo(receivedStudent, student db.Student) db.Student {
+func updateStudentInfo(receivedStudent, student schemas.Student) schemas.Student {
 	if receivedStudent.Name != "" {
 		student.Name = receivedStudent.Name
 	}
